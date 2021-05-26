@@ -97,7 +97,7 @@ export default function NewProjectDialog({ projects, setProjects }) {
                       name="title"
                       id="title"
                       className="shadow-sm focus:ring-theme-green focus:border-theme-green block w-full sm:text-sm border-gray-300 rounded-md"
-                      placeholder="you@example.com"
+                      placeholder="Project Title"
                     />
                   </div>
                   <label
@@ -113,28 +113,36 @@ export default function NewProjectDialog({ projects, setProjects }) {
                       name="team"
                       id="team"
                       className="shadow-sm focus:ring-theme-green focus:border-theme-green block w-full sm:text-sm border-gray-300 rounded-md"
-                      placeholder="you@example.com"
+                      placeholder="Team"
                     />
                   </div>
                 </div>
+                <div className="my-1">
+                  <label
+                    htmlFor="pin"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Pin Project?
+                  </label>
 
-                <Switch
-                  checked={isPinned}
-                  onChange={setIsPinned}
-                  className={classNames(
-                    isPinned ? 'bg-theme-green' : 'bg-gray-200',
-                    'relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-theme-green'
-                  )}
-                >
-                  <span className="sr-only">Use setting</span>
-                  <span
-                    aria-hidden="true"
+                  <Switch
+                    checked={isPinned}
+                    onChange={setIsPinned}
                     className={classNames(
-                      isPinned ? 'translate-x-5' : 'translate-x-0',
-                      'pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200'
+                      isPinned ? 'bg-theme-green' : 'bg-gray-200',
+                      'relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-theme-green mt-2'
                     )}
-                  />
-                </Switch>
+                  >
+                    <span className="sr-only">Use setting</span>
+                    <span
+                      aria-hidden="true"
+                      className={classNames(
+                        isPinned ? 'translate-x-5' : 'translate-x-0',
+                        'pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200'
+                      )}
+                    />
+                  </Switch>
+                </div>
 
                 <div className="mt-4">
                   <button
