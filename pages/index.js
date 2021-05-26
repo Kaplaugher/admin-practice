@@ -1,19 +1,6 @@
 import { Fragment, useState } from 'react';
-import { Dialog, Menu, Transition } from '@headlessui/react';
-import {
-  BellIcon,
-  ClockIcon,
-  CogIcon,
-  CreditCardIcon,
-  DocumentReportIcon,
-  HomeIcon,
-  MenuAlt1Icon,
-  QuestionMarkCircleIcon,
-  ScaleIcon,
-  ShieldCheckIcon,
-  UserGroupIcon,
-  XIcon,
-} from '@heroicons/react/outline';
+import { Menu, Transition } from '@headlessui/react';
+import { BellIcon, ScaleIcon } from '@heroicons/react/outline';
 import {
   CashIcon,
   CheckCircleIcon,

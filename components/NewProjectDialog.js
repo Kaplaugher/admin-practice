@@ -1,8 +1,29 @@
 import { Dialog, Transition } from '@headlessui/react';
-import { Fragment, useState } from 'react';
+import { Fragment, useRef, useState } from 'react';
+import { Switch } from '@headlessui/react';
 
-export default function NewProjectDialog({}) {
+export default function NewProjectDialog({ projects, setProjects }) {
   let [isOpen, setIsOpen] = useState(false);
+  let [isPinned, setIsPinned] = useState(false);
+  const titleRef = useRef(null);
+  const teamRef = useRef(null);
+
+  function classNames(...classes) {
+    return classes.filter(Boolean).join(' ');
+  }
+
+  function newProject() {
+    setProjects([
+      ...projects,
+      {
+        ...projects[0],
+        title: titleRef.current.value,
+        team: teamRef.current.value,
+        pinned: isPinned,
+      },
+    ]);
+    setIsOpen(false);
+  }
 
   function closeModal() {
     setIsOpen(false);
@@ -18,7 +39,7 @@ export default function NewProjectDialog({}) {
         onClick={openModal}
         className="px-4 py-2 text-sm font-medium text-white bg-theme-green rounded-md  focus:outline-none "
       >
-        Create
+        New Project
       </button>
 
       <Transition appear show={isOpen} as={Fragment}>
@@ -53,22 +74,75 @@ export default function NewProjectDialog({}) {
                   as="h3"
                   className="text-lg font-medium leading-6 text-gray-900"
                 >
-                  Payment successful
+                  Create a New Project
                 </Dialog.Title>
                 <div className="mt-2">
                   <p className="text-sm text-gray-500">
-                    Your payment has been successfully submitted. We’ve sent
-                    your an email with all of the details of your order.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Tempore, excepturi.
                   </p>
                 </div>
+
+                <div>
+                  <label
+                    htmlFor="title"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Title
+                  </label>
+                  <div className="mt-1">
+                    <input
+                      ref={titleRef}
+                      type="text"
+                      name="title"
+                      id="title"
+                      className="shadow-sm focus:ring-theme-green focus:border-theme-green block w-full sm:text-sm border-gray-300 rounded-md"
+                      placeholder="you@example.com"
+                    />
+                  </div>
+                  <label
+                    htmlFor="team"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Team
+                  </label>
+                  <div className="mt-1">
+                    <input
+                      ref={teamRef}
+                      type="text"
+                      name="team"
+                      id="team"
+                      className="shadow-sm focus:ring-theme-green focus:border-theme-green block w-full sm:text-sm border-gray-300 rounded-md"
+                      placeholder="you@example.com"
+                    />
+                  </div>
+                </div>
+
+                <Switch
+                  checked={isPinned}
+                  onChange={setIsPinned}
+                  className={classNames(
+                    isPinned ? 'bg-theme-green' : 'bg-gray-200',
+                    'relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-theme-green'
+                  )}
+                >
+                  <span className="sr-only">Use setting</span>
+                  <span
+                    aria-hidden="true"
+                    className={classNames(
+                      isPinned ? 'translate-x-5' : 'translate-x-0',
+                      'pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200'
+                    )}
+                  />
+                </Switch>
 
                 <div className="mt-4">
                   <button
                     type="button"
-                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                    onClick={closeModal}
+                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-theme-green border border-transparent rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                    onClick={newProject}
                   >
-                    Got it, thanks!
+                    Create
                   </button>
                 </div>
               </div>
