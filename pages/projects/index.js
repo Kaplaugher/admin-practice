@@ -9,6 +9,7 @@ import {
   TrashIcon,
   UserAddIcon,
 } from '@heroicons/react/solid';
+import NewProjectDialog from '../../components/NewProjectDialog';
 
 const projects = [
   {
@@ -92,9 +93,6 @@ function classNames(...classes) {
 }
 
 export default function Projects() {
-  const [dialogOpen, setDialogOpen] = useState(false);
-  let completeButtonRef = useRef(null);
-
   return (
     <div className="h-screen flex overflow-hidden bg-white">
       {/* Main column */}
@@ -106,53 +104,11 @@ export default function Projects() {
           <div className="border-b border-gray-200 px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
             <div className="flex-1 min-w-0">
               <h1 className="text-lg font-medium leading-6 text-gray-900 sm:truncate">
-                Home
+                Projects
               </h1>
             </div>
             <div className="mt-4 flex sm:mt-0 sm:ml-4">
-              <button
-                type="button"
-                className="order-1 ml-3 inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:order-0 sm:ml-0"
-              >
-                Share
-              </button>
-              <button
-                onClick={() => setDialogOpen(true)}
-                type="button"
-                className="order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 sm:order-1 sm:ml-3"
-              >
-                Create
-              </button>
-              {/* create dialog */}
-              <Dialog
-                className="fixed z-10 inset-0 overflow-y-auto"
-                open={dialogOpen}
-                onClose={() => setDialogOpen(false)}
-                initialFocus={completeButtonRef}
-              >
-                {' '}
-                <div className="flex items-center justify-center min-h-screen">
-                  <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
-
-                  <div className="bg-white rounded max-w-sm mx-auto">
-                    <Dialog.Title>Complete your order</Dialog.Title>
-                    <p>
-                      Are you sure you want to deactivate your account? All of
-                      your data will be permanently removed. This action cannot
-                      be undone.
-                    </p>
-                    <button onClick={() => setDialogOpen(false)}>Cancel</button>
-                    <button
-                      ref={completeButtonRef}
-                      onClick={() => setDialogOpen(false)}
-                    >
-                      Create
-                    </button>
-
-                    {/* ... */}
-                  </div>
-                </div>
-              </Dialog>
+              <NewProjectDialog />
             </div>
           </div>
           {/* Pinned projects */}
@@ -189,7 +145,7 @@ export default function Projects() {
                     <Menu as="div" className="flex-shrink-0 pr-2">
                       {({ open }) => (
                         <>
-                          <Menu.Button className="w-8 h-8 bg-white inline-flex items-center justify-center text-gray-400 rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                          <Menu.Button className="w-8 h-8 bg-white inline-flex items-center justify-center text-gray-400 rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-theme-green">
                             <span className="sr-only">Open options</span>
                             <DotsVerticalIcon
                               className="w-5 h-5"
@@ -378,7 +334,7 @@ export default function Projects() {
                         >
                           {({ open }) => (
                             <>
-                              <Menu.Button className="w-8 h-8 bg-white inline-flex items-center justify-center text-gray-400 rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                              <Menu.Button className="w-8 h-8 bg-white inline-flex items-center justify-center text-gray-400 rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-theme-green">
                                 <span className="sr-only">Open options</span>
                                 <DotsVerticalIcon
                                   className="w-5 h-5"
