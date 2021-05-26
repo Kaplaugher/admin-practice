@@ -10,6 +10,7 @@ import {
   SearchIcon,
 } from '@heroicons/react/solid';
 import ActiveProjects from '../components/ActiveProjects';
+import Login from '../components/Login';
 
 const cards = [
   { name: `Today's Sales`, href: '#', icon: ScaleIcon, amount: '$30,659.45' },
@@ -40,7 +41,8 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function Example() {
+export default function Home({ session }) {
+  if (!session) return <Login />;
   return (
     <div className="h-screen flex overflow-hidden bg-gray-100">
       <div className="flex-1 overflow-auto focus:outline-none">

@@ -2,6 +2,7 @@ import '../styles/globals.css';
 import SideNav from '../components/SideNav';
 import ProjectsContext from '../context/state';
 import { useState } from 'react';
+import { Provider } from 'next-auth/client';
 
 function MyApp({ Component, pageProps }) {
   const [projects, setProjects] = useState([
@@ -81,16 +82,18 @@ function MyApp({ Component, pageProps }) {
   ]);
 
   return (
-    <ProjectsContext.Provider value={{ projects, setProjects }}>
-      <div className="flex">
-        <div className="w-64">
-          <SideNav />
+    <Provider session={pageProps.session}>
+      <ProjectsContext.Provider value={{ projects, setProjects }}>
+        <div className="flex">
+          <div className="w-64">
+            <SideNav {...pageProps} />
+          </div>
+          <div className="flex-grow">
+            <Component {...pageProps} />
+          </div>
         </div>
-        <div className="flex-grow">
-          <Component {...pageProps} />
-        </div>
-      </div>
-    </ProjectsContext.Provider>
+      </ProjectsContext.Provider>
+    </Provider>
   );
 }
 

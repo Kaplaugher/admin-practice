@@ -90,8 +90,6 @@ export async function getStaticProps(context) {
   const res = await fetch(`https://randomuser.me/api/?page=1&results=10`);
   const data = await res.json();
 
-  console.log(data);
-
   return {
     props: { data }, // will be passed to the page component as props
   };
