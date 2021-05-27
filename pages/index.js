@@ -15,12 +15,6 @@ import { getSession } from 'next-auth/client';
 import Link from 'next/link';
 import Stats from '../components/Stats';
 
-const cards = [
-  { name: `Today's Sales`, href: '#', icon: ScaleIcon, amount: '$30,659.45' },
-  { name: 'Monthly Sales', href: '#', icon: ScaleIcon, amount: '$300,659.45' },
-  { name: 'Yearly Sales', href: '#', icon: ScaleIcon, amount: '$3,300,659.45' },
-  // More items...
-];
 const events = [
   {
     id: 1,
@@ -50,7 +44,7 @@ export default function Home({ session }) {
       <div className="flex-1 overflow-auto focus:outline-none">
         <div className="relative z-10 flex-shrink-0 flex h-16 border-b border-gray-200 lg:border-none">
           {/* Search bar */}
-          <div className="flex-1 px-4 flex justify-between sm:px-6 lg:max-w-6xl lg:mx-auto lg:px-8 bg-theme-dark">
+          <div className="flex-1 px-4 flex justify-between sm:px-6 lg:px-8 bg-theme-dark">
             <div className="flex-1 flex">
               <form className="w-full flex md:ml-0" action="#" method="GET">
                 <label htmlFor="search_field" className="sr-only">
