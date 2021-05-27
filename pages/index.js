@@ -12,6 +12,7 @@ import {
 } from '@heroicons/react/solid';
 import ActiveProjects from '../components/ActiveProjects';
 import { getSession } from 'next-auth/client';
+import Link from 'next/link';
 
 const cards = [
   { name: `Today's Sales`, href: '#', icon: ScaleIcon, amount: '$30,659.45' },
@@ -85,12 +86,12 @@ export default function Home({ session }) {
                       <Menu.Button className="max-w-xs bg-white rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 lg:p-2 lg:rounded-md lg:hover:bg-gray-50">
                         <img
                           className="h-8 w-8 rounded-full"
-                          src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                          src={session.user.image}
                           alt=""
                         />
                         <span className="hidden ml-3 text-gray-700 text-sm font-medium lg:block">
                           <span className="sr-only">Open user menu for </span>
-                          Emilia Birch
+                          {session.user.name}
                         </span>
                         <ChevronDownIcon
                           className="hidden flex-shrink-0 ml-1 h-5 w-5 text-gray-400 lg:block"
@@ -114,15 +115,16 @@ export default function Home({ session }) {
                       >
                         <Menu.Item>
                           {({ active }) => (
-                            <a
-                              href="#"
-                              className={classNames(
-                                active ? 'bg-gray-100' : '',
-                                'block px-4 py-2 text-sm text-gray-700'
-                              )}
-                            >
-                              Your Profile
-                            </a>
+                            <Link href="/profile">
+                              <a
+                                className={classNames(
+                                  active ? 'bg-gray-100' : '',
+                                  'block px-4 py-2 text-sm text-gray-700'
+                                )}
+                              >
+                                Your Profile
+                              </a>
+                            </Link>
                           )}
                         </Menu.Item>
                         <Menu.Item>
@@ -169,18 +171,18 @@ export default function Home({ session }) {
                   <div className="flex items-center">
                     <img
                       className="hidden h-16 w-16 rounded-full sm:block"
-                      src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.6&w=256&h=256&q=80"
+                      src={session.user.image}
                       alt=""
                     />
                     <div>
                       <div className="flex items-center">
                         <img
                           className="h-16 w-16 rounded-full sm:hidden"
-                          src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.6&w=256&h=256&q=80"
+                          src={session.user.image}
                           alt=""
                         />
                         <h1 className="ml-3 text-2xl font-bold leading-7 text-gray-900 sm:leading-9 sm:truncate">
-                          Good morning, Emilia Birch
+                          Good morning, {session.user.name}
                         </h1>
                       </div>
                       <dl className="mt-6 flex flex-col sm:ml-3 sm:mt-1 sm:flex-row sm:flex-wrap">

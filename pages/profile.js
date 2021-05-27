@@ -1,8 +1,10 @@
+import { getSession } from 'next-auth/client';
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function Profile() {
+export default function Profile({ session }) {
   return (
     <div className="h-screen flex bg-blue-gray-50 overflow-hidden">
       <div className="flex-1 min-w-0 flex flex-col overflow-hidden">
@@ -69,14 +71,14 @@ export default function Profile() {
                         </label>
                         <div className="mt-1 flex rounded-md shadow-sm">
                           <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-blue-gray-300 bg-blue-gray-50 text-blue-gray-500 sm:text-sm">
-                            workcation.com/
+                            shipt.com/
                           </span>
                           <input
                             type="text"
                             name="username"
                             id="username"
                             autoComplete="username"
-                            defaultValue="lisamarie"
+                            defaultValue={session.user.name}
                             className="flex-1 block w-full min-w-0 border-blue-gray-300 rounded-none rounded-r-md text-blue-gray-900 sm:text-sm focus:ring-theme-green focus:border-theme-green"
                           />
                         </div>
@@ -92,7 +94,7 @@ export default function Profile() {
                         <div className="mt-1 flex items-center">
                           <img
                             className="inline-block h-12 w-12 rounded-full"
-                            src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2.5&w=256&h=256&q=80"
+                            src={session?.user.image}
                             alt=""
                           />
                           <div className="ml-4 flex">
@@ -265,4 +267,15 @@ export default function Profile() {
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  // get users
+  const session = await getSession(context);
+
+  return {
+    props: {
+      session,
+    },
+  };
 }

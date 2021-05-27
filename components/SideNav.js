@@ -27,7 +27,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function SideNav() {
+export default function SideNav({ session }) {
   return (
     <div className="flex flex-col h-screen flex-1 border-r border-gray-200 bg-white">
       <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
@@ -81,13 +81,13 @@ export default function SideNav() {
             <div>
               <img
                 className="inline-block h-9 w-9 rounded-full"
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                src={session.user.image}
                 alt=""
               />
             </div>
             <div className="ml-3">
               <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">
-                Kyle Plaugher
+                {session.user.name}
               </p>
               <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">
                 View profile
@@ -98,4 +98,15 @@ export default function SideNav() {
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  // get users
+  const session = await getSession(context);
+
+  return {
+    props: {
+      session,
+    },
+  };
 }

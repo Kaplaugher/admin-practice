@@ -89,7 +89,7 @@ function MyApp({ Component, pageProps }) {
         <Provider session={pageProps.session}>
           <div className="flex">
             <div className="w-64">
-              <SideNav {...pageProps} />
+              <SideNav {...pageProps} session={session} />
             </div>
             <div className="flex-grow">
               <Component {...pageProps} />
