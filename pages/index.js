@@ -87,13 +87,13 @@ export default function Home({ session }) {
                 {({ open }) => (
                   <>
                     <div>
-                      <Menu.Button className="max-w-xs bg-white rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 lg:p-2 lg:rounded-md lg:hover:bg-gray-50">
+                      <Menu.Button className="max-w-xs rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 lg:p-2 lg:rounded-md ">
                         <img
                           className="h-8 w-8 rounded-full"
                           src={session.user.image}
                           alt=""
                         />
-                        <span className="hidden ml-3 text-gray-700 text-sm font-medium lg:block">
+                        <span className="hidden ml-3 text-white text-sm font-medium lg:block">
                           <span className="sr-only">Open user menu for </span>
                           {session.user.name}
                         </span>

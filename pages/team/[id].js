@@ -5,11 +5,8 @@ export default function TeamMember() {
     <div className="p-12 max-w-3xl mx-auto">
       <div>
         <h3 className="text-lg leading-6 font-medium text-gray-900">
-          Applicant Information
+          Employee Information
         </h3>
-        <p className="mt-1 max-w-2xl text-sm text-gray-500">
-          Personal details and application.
-        </p>
       </div>
       <div className="mt-5 border-t border-gray-200">
         <dl className="divide-y divide-gray-200">
@@ -28,9 +25,7 @@ export default function TeamMember() {
             </dd>
           </div>
           <div className="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
-            <dt className="text-sm font-medium text-gray-500">
-              Application for
-            </dt>
+            <dt className="text-sm font-medium text-gray-500">Position</dt>
             <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
               <span className="flex-grow">Backend Developer</span>
               <span className="ml-4 flex-shrink-0">
@@ -58,9 +53,7 @@ export default function TeamMember() {
             </dd>
           </div>
           <div className="py-4 sm:grid sm:py-5 sm:grid-cols-3 sm:gap-4">
-            <dt className="text-sm font-medium text-gray-500">
-              Salary expectation
-            </dt>
+            <dt className="text-sm font-medium text-gray-500">Salary</dt>
             <dd className="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
               <span className="flex-grow"> $120,000</span>
               <span className="ml-4 flex-shrink-0">
