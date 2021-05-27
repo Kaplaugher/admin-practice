@@ -1,4 +1,5 @@
 import { Fragment, useState } from 'react';
+import { signOut } from 'next-auth/client';
 import { Menu, Transition } from '@headlessui/react';
 import { BellIcon, ScaleIcon } from '@heroicons/react/outline';
 import {
@@ -10,7 +11,7 @@ import {
   SearchIcon,
 } from '@heroicons/react/solid';
 import ActiveProjects from '../components/ActiveProjects';
-import Login from '../components/Login';
+import { getSession } from 'next-auth/client';
 
 const cards = [
   { name: `Today's Sales`, href: '#', icon: ScaleIcon, amount: '$30,659.45' },
@@ -42,7 +43,6 @@ function classNames(...classes) {
 }
 
 export default function Home({ session }) {
-  if (!session) return <Login />;
   return (
     <div className="h-screen flex overflow-hidden bg-gray-100">
       <div className="flex-1 overflow-auto focus:outline-none">
@@ -140,15 +140,15 @@ export default function Home({ session }) {
                         </Menu.Item>
                         <Menu.Item>
                           {({ active }) => (
-                            <a
-                              href="#"
+                            <div
+                              onClick={signOut}
                               className={classNames(
                                 active ? 'bg-gray-100' : '',
                                 'block px-4 py-2 text-sm text-gray-700'
                               )}
                             >
                               Logout
-                            </a>
+                            </div>
                           )}
                         </Menu.Item>
                       </Menu.Items>
@@ -380,4 +380,15 @@ export default function Home({ session }) {
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  // get users
+  const session = await getSession(context);
+
+  return {
+    props: {
+      session,
+    },
+  };
 }
