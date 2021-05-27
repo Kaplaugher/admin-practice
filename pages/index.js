@@ -18,7 +18,7 @@ import Stats from '../components/Stats';
 const events = [
   {
     id: 1,
-    name: 'Payment to Molly Sanders',
+    name: 'Total Coupons Used',
     href: '#',
     amount: '$20,000',
     currency: 'USD',
