@@ -48,7 +48,7 @@ export default function ActiveProjects() {
           <Link
             href="/projects/1"
             key={project.name}
-            className="cursor-pointer"
+            className="cursor-pointer hover:bg-gray-400"
           >
             <div className="col-span-1 flex shadow-sm rounded-md">
               <div
